@@ -145,7 +145,12 @@ function mainLoop() {
 		
 		// loop through all bugs for life functions, drawing
 		for (var i=0; i<bugArray.length; i++) {
-			bugArray[i].onEnterFrame();
+			if (killSwitch) {
+				break;
+			}
+			else {
+				bugArray[i].onEnterFrame();
+			}
 		}
 		
 		// Replenish energyPool
@@ -159,7 +164,9 @@ function mainLoop() {
 			maxResources = graphInfo[graphInfo.length-1][1];
 		}
 		
-		gLoop = setTimeout(mainLoop, 1000/10); // loop the main loop
+		if (!killSwitch) {
+			gLoop = setTimeout(mainLoop, 1000/10); // loop the main loop
+		}
 	}
 }
 
@@ -210,15 +217,26 @@ function flipKillSwitch() { // when killswitch clicked
 }
 
 function init() {
-	//reset vars
-	energyPool = 100000;
-	bugArray = [];
-	graphInfo = [[1, energyPool]];
-	maxResources = energyPool;
-	maxBugs = 1;
-	
-	var luca = new Bug("NNNNEICOMEPAPITA", centerX, centerY, '#00CC77'); // First bug
-	mainLoop();
+	if (!killSwitch) {
+		flipKillSwitch();
+	}
+	else {
+		//reset vars
+		energyPool = 100000;
+		bugArray = [];
+		graphInfo = [[1, energyPool]];
+		maxResources = energyPool;
+		maxBugs = 1;
+		
+		ctx.fillStyle = "#FFFFFF"; // erase stage
+		ctx.fillRect(0, 0, centerX*2, centerY*2);
+		
+		var luca = new Bug("NNNNEICOMEPAPITA", centerX, centerY, '#00CC77'); // First bug
+		
+		killSwitch = false;
+		document.getElementById('killSwitchBtn').value = "Killswitch off";
+		mainLoop();
+	}
 }
 
 init();
