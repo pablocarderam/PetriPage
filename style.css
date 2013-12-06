@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+
+canvas {
+	width: 500px; 
+	height: 500px;
+	padding: 0;
+}
+body {
+	text-align: center;
+}
