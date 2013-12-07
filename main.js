@@ -17,7 +17,7 @@ var alfabeto = [
 	// (STUFFOME: simplified version of genome, proteome, metabolome, etc). 
 var surviveSeq = "EICOMEPAPITA"; // stuffome sequence needed to metabolize, i.e. eat
 var stuffomeLength = 16; // length of stuffome in each bug
-var mutationOdds = 100; // 1/n chance of mutation per letter
+var mutationOdds = 50; // 1/n chance of mutation per letter
 var reproductionEnergy = 10; // energy needed for a bug to reproduce 
 	//(BUG: individual agent/organism/player/whatev)
 var startEnergy = 5; // energy at which bug starts
@@ -205,38 +205,46 @@ function graph() { // draw population and resource graphs
 function flipKillSwitch() { // when killswitch clicked
 	killSwitch = !killSwitch; // flip killSwitch
 	if (killSwitch) {
-		document.getElementById('killSwitchBtn').value = "Killswitch on";
+		document.getElementById('graphBtn').value = "Hide graph";
 		graph();
 	}
 	else {
-		document.getElementById('killSwitchBtn').value = "Killswitch off";
+		document.getElementById('graphBtn').value = "Show graph";
 		ctx.fillStyle = "#FFFFFF"; // erase stage
 		ctx.fillRect(0, 0, centerX*2, centerY*2);
 		mainLoop();
 	}
+}
+
+function restart() {
+	killSwitch = true;
+	energyPool = 100000;
+	bugArray = [];
+	graphInfo = [[1, energyPool]];
+	maxResources = energyPool;
+	maxBugs = 1;
+	
+	ctx.fillStyle = "#FFFFFF"; // erase stage
+	ctx.fillRect(0, 0, centerX*2, centerY*2);
+	
+	// Draw petri dish
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, centerX - 5, 0, 2*Math.PI, false);
+	ctx.fillStyle = '#00FFDD';
+	ctx.fill();
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = '#99DDDD';
+	ctx.stroke();
+	
+	var luca = new Bug("NNNNEICOMEPAPITA", centerX, centerY, '#00CC77'); // First Bug
+	
+	gLoop = setTimeout(init, 1000/10); // pause before starting (fixes restart bug)
 }
 
 function init() {
-	if (!killSwitch) {
-		flipKillSwitch();
-	}
-	else {
-		//reset vars
-		energyPool = 100000;
-		bugArray = [];
-		graphInfo = [[1, energyPool]];
-		maxResources = energyPool;
-		maxBugs = 1;
-		
-		ctx.fillStyle = "#FFFFFF"; // erase stage
-		ctx.fillRect(0, 0, centerX*2, centerY*2);
-		
-		var luca = new Bug("NNNNEICOMEPAPITA", centerX, centerY, '#00CC77'); // First bug
-		
-		killSwitch = false;
-		document.getElementById('killSwitchBtn').value = "Killswitch off";
-		mainLoop();
-	}
+	killSwitch = false;
+	document.getElementById('graphBtn').value = "Show graph";
+	mainLoop();
 }
 
-init();
+restart();
