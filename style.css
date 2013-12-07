@@ -10,3 +10,11 @@ body {
 	font-family: Arial;
 	text-align: center;
 }
+.text {
+	text-align: justify;
+	padding-left: 30%;
+	padding-right: 30%;
+}
+.slider {
+	font-size: 14px;
+}

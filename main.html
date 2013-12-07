@@ -11,13 +11,27 @@
 	</div>
 	<input id="graphBtn" type="button" onclick="graphBtnHandler()" value='Show graph'></input>
 	<input id="restart" type="button" onclick="restart()" value='Restart'></input> 
-	<script src="js/varsandmeths.js" type="text/javascript"></script>
+	<p class="slider">Framerate: 1<input type="range" name="frameRateSlider" min="1" max="10" value="5" onchange="updateFps(this.value)">10 fps</p>
+	<p>Survival sequence<input type="text" value="EICOMEPAPITA" onchange="updateSurviveSeq(this.value)"></p>
+	<p>Mutation odds: one in <input type="text" value="50" onchange="updateMutationOdds(this.value)"> letters</p>
+	<script src="js/varmeth.js" type="text/javascript"></script>
 	<script src="js/Bug.js" type="text/javascript"></script>
 	<script src="js/graphs.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
-	<p><a href="http://opensource.org/licenses/MIT">MIT OS License!</a>
-	</p><p><a href="https://github.com/pablocarderam/PetriPage">GitHub src here!</a>
-	</p><p><a href="mailto:pablocarderam@gmail.com">pablocarderam@gmail.com</a>
+	<p><b>Simple evolution simulator</b></p>
+	<p class="text">
+		The simulator displays inidividuals (‘bugs’) as little circles. 
+		Each bug has a 16 letter genome/proteome/metabolome (‘stuffome’). 
+		Stuffomes have a vocab of 20 letters, 10 synonymous pairs. 
+		If a bug has a specific survival sequence (‘EICOMPEPAPITA’) in its stuffome, it can eat and survive. 
+		Eating gives the bug Energy, and subtracts Energy from the common resource (“Energy Pool”). 
+		If a bug has enough energy, it reproduces. The daughter bug has a certain chance to mutate. 
+		If there is not enough food available, a bug dies. 
+		You can view the population and resource level graphs.
 	</p>
+	<p>Future plans include antibiotic resistance simulations</p>
+	<p><a href="http://opensource.org/licenses/MIT">MIT OS License!</a></p>
+	<p><a href="https://github.com/pablocarderam/PetriPage">GitHub src here!</a></p>
+	<p><a href="mailto:pablocarderam@gmail.com">pablocarderam@gmail.com</a></p>
 </body>
 </html>

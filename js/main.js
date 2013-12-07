@@ -2,7 +2,8 @@
 
 function mainLoop() {
 	if (!killSwitch) { // if killswitch off
-		// Draw petri dish//console.log("Bugs: " + bugArray.length + ". Energy Pool: " + energyPool);
+		// Draw petri dish
+		//console.log("Bugs: " + bugArray.length + ". Energy Pool: " + energyPool);
 		ctx.beginPath();
 		ctx.arc(centerX, centerY, centerX - 5, 0, 2*Math.PI, false);
 		ctx.fillStyle = '#00FFDD';
@@ -25,15 +26,15 @@ function mainLoop() {
 		energyPool = Math.round(energyPool*energyPoolReplenish*10)/10;
 		
 		graphInfo.push([bugArray.length, energyPool]); // stores population and resource levels in this turn/frame
-		if (graphInfo[graphInfo.length-1][0] > graphInfo[graphInfo.length-2][0]) {
-			maxBugs = graphInfo[graphInfo.length-1][0];
+		if (graphInfo[graphInfo.length-1][0] > maxBugs) { // if population at new high
+			maxBugs = graphInfo[graphInfo.length-1][0]; // store this number (for use in graph)
 		}
-		if (graphInfo[graphInfo.length-1][1] > graphInfo[graphInfo.length-2][1]) {
-			maxResources = graphInfo[graphInfo.length-1][1];
+		if (graphInfo[graphInfo.length-1][1] > maxResources) { // if resources at new high
+			maxResources = graphInfo[graphInfo.length-1][1]; // store that number
 		}
 		
 		if (!killSwitch) {
-			gLoop = setTimeout(mainLoop, 1000/10); // loop the main loop
+			gLoop = setTimeout(mainLoop, 1000/fps); // loop the main loop
 		}
 	}
 }
@@ -54,7 +55,7 @@ function graphBtnHandler() { // when killswitch clicked
 
 function restart() {
 	killSwitch = true;
-	energyPool = 100000;
+	energyPool = poolStart;
 	bugArray = [];
 	graphInfo = [[1, energyPool]];
 	maxResources = energyPool;
