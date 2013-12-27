@@ -61,18 +61,20 @@ function Bug(stuffome, X, Y, color) { // class conctructor
 	this.onEnterFrame = function () { // every new frame
 		this.energy = this.energy - 1; // consume energy
 		var synStuffome = this.stuffome; // stores synonym stuffome to compare against surviveSeq
-		synStuffome.replace("A", "B"); // replaces all letters with thir basic synonyms
-		synStuffome.replace("C", "D");
-		synStuffome.replace("E", "F");
-		synStuffome.replace("G", "H");
-		synStuffome.replace("I", "J");
-		synStuffome.replace("K", "K");
-		synStuffome.replace("M", "N");
-		synStuffome.replace("P", "O"); // AL REVÉS! pa que quede COMEPAPA y no CPMEOAOA :)
-		synStuffome.replace("Q", "R");
-		synStuffome.replace("T", "S"); // también al revés
-		if (synStuffome.search(surviveSeq) >= 0) { // if the synonym has the survival sequence
-			this.eat(); // eat
+		synStuffome = synStuffome.replace("B", "A"); // replaces all letters with their basic synonyms
+		synStuffome = synStuffome.replace("D", "C");
+		synStuffome = synStuffome.replace("F", "E");
+		synStuffome = synStuffome.replace("H", "G");
+		synStuffome = synStuffome.replace("J", "I");
+		synStuffome = synStuffome.replace("L", "K");
+		synStuffome = synStuffome.replace("N", "M");
+		synStuffome = synStuffome.replace("P", "O");
+		synStuffome = synStuffome.replace("R", "Q");
+		synStuffome = synStuffome.replace("T", "S");
+		for (var k=0; k<surviveSeq.length; k++) { // for every survival sequence
+			if (synStuffome.search(surviveSeq[k]) >= 0) { // if the synonym has the survival sequence
+				this.eat(); // eat
+			}
 		}
 		if (this.energy >= reproductionEnergy) { // if enough energy
 			this.reproduce(); // reproduce

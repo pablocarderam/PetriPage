@@ -2,6 +2,10 @@
 
 function mainLoop() {
 	if (!killSwitch) { // if killswitch off
+		
+		ctx.fillStyle = "#FFFFFF"; // erase stage
+		ctx.fillRect(0, 0, centerX*2, centerY*2);
+		
 		// Draw petri dish
 		//console.log("Bugs: " + bugArray.length + ". Energy Pool: " + energyPool);
 		ctx.beginPath();
@@ -73,7 +77,7 @@ function restart() {
 	ctx.strokeStyle = '#99DDDD';
 	ctx.stroke();
 	
-	var luca = new Bug("NNNNEICOMEPAPITA", centerX, centerY, '#00CC77'); // First Bug
+	var luca = new Bug("NNNNNNMOCOSNNNNN", centerX, centerY, '#00CC77'); // First Bug
 	
 	gLoop = setTimeout(init, 1000/10); // pause before starting (fixes restart bug)
 }
