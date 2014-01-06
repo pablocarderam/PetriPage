@@ -15,9 +15,16 @@ body {
 	padding-left: 30%;
 	padding-right: 30%;
 }
-.slider {
-	font-size: 14px;
-}
 .parameters {
 	font-size : 12px;
+	width: 30%;
+	background: #FFFFFF;
+	position: fixed;
+	top: 0;
+	right: 0;
+	border: 0;
+}
+
+.page {
+	width: 70%;
 }

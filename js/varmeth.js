@@ -98,3 +98,11 @@ function updateStartEnergy(newVal) {
 function updateRepEnergy(newVal) {
 	reproductionEnergy = newVal;
 }
+
+function updateStartResources(newVal) {
+	poolStart = newVal;
+}
+
+function updateResourceReplenishment(newVal) {
+	energyPoolReplenish = newVal/100;
+}
