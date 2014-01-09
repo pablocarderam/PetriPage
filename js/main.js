@@ -28,6 +28,9 @@ function mainLoop() {
 		
 		// Replenish energyPool
 		energyPool = Math.round(energyPool*energyPoolReplenish*10)/10;
+		if (energyPool > poolMax) { // if energy pool is above the max sustainable yield,
+			energyPool = poolMax; // set to the max
+		}
 		
 		graphInfo.push([bugArray.length, energyPool]); // stores population and resource levels in this turn/frame
 		if (graphInfo[graphInfo.length-1][0] > maxBugs) { // if population at new high

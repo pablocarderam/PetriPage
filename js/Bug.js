@@ -59,7 +59,9 @@ function Bug(stuffome, X, Y, color) { // class conctructor
 		this.energy = startEnergy; // set this one's energy to startEnergy
 	};
 	this.onEnterFrame = function () { // every new frame
+	
 		this.energy = this.energy - 1; // consume energy
+		
 		var synStuffome = this.stuffome; // stores synonym stuffome to compare against surviveSeq
 		synStuffome = synStuffome.replace("B", "A"); // replaces all letters with their basic synonyms
 		synStuffome = synStuffome.replace("D", "C");
@@ -71,11 +73,18 @@ function Bug(stuffome, X, Y, color) { // class conctructor
 		synStuffome = synStuffome.replace("P", "O");
 		synStuffome = synStuffome.replace("R", "Q");
 		synStuffome = synStuffome.replace("T", "S");
+
 		for (var k=0; k<surviveSeq.length; k++) { // for every survival sequence
 			if (synStuffome.search(surviveSeq[k]) >= 0) { // if the synonym has the survival sequence
 				this.eat(); // eat
 			}
 		}
+		for (var l=0; l<killSeq.length; l++) { // for every survival sequence
+			if (synStuffome.search(killSeq[l]) >= 0) { // if the synonym has the survival sequence
+				this.energy = this.energy - 1; // consume energy
+			}
+		}
+		
 		if (this.energy >= reproductionEnergy) { // if enough energy
 			this.reproduce(); // reproduce
 		}

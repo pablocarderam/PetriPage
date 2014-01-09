@@ -40,11 +40,14 @@
 		<p><b>Framerate:</b> 1<input type="range" name="frameRateSlider" min="1" max="10" value="5" onchange="updateFps(this.value)">10 fps</p>
 		<p> <b>Starting resources</b> <input type="text" value="1000" onchange="updateStartResources(this.value)"> </p>
 		<p><b>Resource replenishment rate:</b> <input type="text" value="110" onchange="updateResourceReplenishment(this.value)">%</p>
+		<p><b>Max resource level:</b> <input type="text" value="200000" onchange="updateMaxResource(this.value)"></p>
 		<p><b>Mutation odds:</b> one in <input type="text" value="50" onchange="updateMutationOdds(this.value)"> letters</p>
 		<p><b>Start energy:</b> <input type="text" value="5" onchange="updateStartEnergy(this.value)">  </p>
 		<p><b>Reproduction energy:</b> <input type="text" value="10" onchange="updateRepEnergy(this.value)"></p>
 		<p><b>Survival sequence</b> <input type="text" value="MOCOS" onchange="updateSurviveSeq(0, this.value)"></p>
 		<p id="new_survive_seqs"><input type="button" value="New survival sequence" onclick="newSurviveSeq()"></p>
+		<p><b>Kill sequence</b> <input type="text" value="TYPE HERE" onchange="updateKillSeq(0, this.value)"></p>
+		<p id="new_kill_seqs"><input type="button" value="New kill sequence" onclick="newKillSeq()"></p>
 	</div>
 </body>
 </html>

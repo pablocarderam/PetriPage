@@ -24,6 +24,7 @@ var alfabeto = [
 	]; // stores all possible letters to be used in stuffome. In this case, 20 letters
 	// (STUFFOME: simplified version of genome, proteome, metabolome, etc). 
 var surviveSeq = ["MOCOS"]; // Array with stuffome sequences that allow metabolism, i.e. eat
+var killSeq = [];  // Array with antibiotic sequences that block metabolism, i.e. kill
 var stuffomeLength = 16; // length of stuffome in each bug
 var mutationOdds = 50; // 1/n chance of mutation per letter
 
@@ -32,6 +33,7 @@ var reproductionEnergy = 10; // energy needed for a bug to reproduce
 	//(BUG: individual agent/organism/player/whatev)
 var startEnergy = 5; // energy at which bug starts
 var poolStart = 1000; // stores starting level of Energy Pool
+var poolMax = 200000; // stores "maximum sustainable yield" of the energy pool. Ceiling value.
 var energyPool = poolStart; // stores resources on medium. Set to starting value
 var energyPoolReplenish = 1.1; // stores factor by which energyPool replenishes. 1 = no replenishment
 
@@ -54,7 +56,7 @@ function updateFps(newVal) {
 
 function newSurviveSeq() {
 	surviveSeq.push("-"); // add new surviveSeq to array
-	var id = surviveSeq.length-1; // stores id that relates this form to this sequence
+	var id = surviveSeq.length-1; // stores id that relates this text input area to this sequence
 	id.toString();
 	
 	var i = document.createElement("input"); // creates a new input element for the new survival sequence
@@ -64,6 +66,20 @@ function newSurviveSeq() {
 	i.setAttribute('onchange', "updateSurviveSeq(this.id, this.value)");
 	
 	document.getElementById('new_survive_seqs').appendChild(i); // adds it to html
+}
+
+function newKillSeq() {
+	killSeq.push("-"); // add new killSeq to array
+	var id = killSeq.length-1; // stores id that relates this text input area to this sequence
+	id.toString();
+	
+	var i = document.createElement("input"); // creates a new input element for the new survival sequence
+	i.setAttribute('type',"text");
+	i.setAttribute('value',"TYPE HERE");
+	i.setAttribute('id', id);
+	i.setAttribute('onchange', "updateKillSeq(this.id, this.value)");
+	
+	document.getElementById('new_kill_seqs').appendChild(i); // adds it to html
 }
 
 function updateSurviveSeq(formNum, newVal) {
@@ -87,6 +103,25 @@ function updateSurviveSeq(formNum, newVal) {
 	surviveSeq[formNum] = newVal;
 }
 
+function updateKillSeq(formNum, newVal) {
+	if (newVal === "") {
+		newVal = "-";
+	}
+	
+	newVal = newVal.replace("B", "A"); // replaces all letters with their basic synonyms
+	newVal = newVal.replace("D", "C");
+	newVal = newVal.replace("F", "E");
+	newVal = newVal.replace("H", "G");
+	newVal = newVal.replace("J", "I");
+	newVal = newVal.replace("L", "K");
+	newVal = newVal.replace("N", "M");
+	newVal = newVal.replace("P", "O");
+	newVal = newVal.replace("R", "Q");
+	newVal = newVal.replace("T", "S");
+	
+	killSeq[formNum] = newVal;
+}
+
 function updateMutationOdds(newVal) {
 	mutationOdds = newVal;
 }
@@ -105,4 +140,8 @@ function updateStartResources(newVal) {
 
 function updateResourceReplenishment(newVal) {
 	energyPoolReplenish = newVal/100;
+}
+
+function updateMaxResource(newVal) {
+	poolMax = newVal;
 }
