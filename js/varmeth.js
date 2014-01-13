@@ -27,6 +27,7 @@ var surviveSeq = ["MO", "CO", "SO"]; // Array with stuffome sequences that allow
 var killSeq = [];  // Array with antibiotic sequences that block metabolism, i.e. kill
 var stuffomeLength = 16; // length of stuffome in each bug
 var mutationOdds = 50; // 1/n chance of mutation per letter
+var startStuffome = "NNNNNNMOCOSNNNNN"; // stuffome of initial bug
 
 // Energy
 var reproductionEnergy = 15; // energy needed for a bug to reproduce 
@@ -39,9 +40,11 @@ var energyPoolReplenish = 1.02; // stores factor by which energyPool replenishes
 
 // Keeping track of things
 var bugArray = []; // stores all bugs
+
 var graphInfo = [[1, energyPool]]; // stores population and resource levels for each frame, to be graphed later. Each element in array is [population, resources]
 var maxBugs = 1; // stores max values attained in the simulation, used for graph scale
 var maxResources = energyPool;
+
 
 // METHODS
 function getDistance(x1, y1, x2, y2) { // find distance between two points
@@ -144,4 +147,8 @@ function updateResourceReplenishment(newVal) {
 
 function updateMaxResource(newVal) {
 	poolMax = newVal;
+}
+
+function updateStartStuffome(newVal) {
+	startStuffome = newVal;
 }

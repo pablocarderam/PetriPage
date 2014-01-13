@@ -1,12 +1,17 @@
 // JavaScript Document, Bug Class
 
-function Bug(stuffome, X, Y, color) { // class conctructor
+function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 	bugArray.push(this); // add to bugArray
+	
+	// Properties
 	this.stuffome = stuffome;
 	this.energy = startEnergy;
 	this.X = X;
 	this.Y = Y;
 	this.color = color;
+	this.parentStuffome = parentStuffome;
+	
+	// Methods
 	this.eat = function () { // Eat
 		if (energyPool >= 2) { // if enough resources
 			energyPool = energyPool - 2; // subtract from pool
@@ -55,7 +60,7 @@ function Bug(stuffome, X, Y, color) { // class conctructor
 			}
 		}
 		
-		var daughter = new Bug(newStuffome, newX, newY, newColor); // make new bug
+		var daughter = new Bug(newStuffome, newX, newY, newColor, this.stuffome); // make new bug
 		this.energy = startEnergy; // set this one's energy to startEnergy
 	};
 	this.onEnterFrame = function () { // every new frame

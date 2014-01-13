@@ -1,4 +1,4 @@
-// JavaScript Document PetriDish main, by pablo cr. TO DO: genome and phylogeny line visualization, antibiotics, different success rates among strains
+// JavaScript Document PetriDish main, by pablo cr. TO DO: genome and phylogeny line visualization, selective antibiotics
 
 function mainLoop() {
 	if (!killSwitch) { // if killswitch off
@@ -80,7 +80,7 @@ function restart() {
 	ctx.strokeStyle = '#99DDDD';
 	ctx.stroke();
 	
-	var luca = new Bug("NNNNNNMOCOSNNNNN", centerX, centerY, '#00CC77'); // First Bug
+	var luca = new Bug(startStuffome, centerX, centerY, '#00CC77', '-'); // First Bug
 	
 	gLoop = setTimeout(init, 1000/10); // pause before starting (fixes restart bug)
 }

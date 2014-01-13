@@ -24,7 +24,6 @@
 			If a bug has enough energy, it reproduces. The daughter bug has a certain chance to mutate. 
 			If there is not enough food available, a bug dies. 
 			You can view the population and resource level graphs.
-			Note: the initial bug's stuffome is "NNNNNNMOCOSNNNNN"
 		</p>
 		<p>Future plans include antibiotic resistance simulations</p>
 		<p><a href="http://opensource.org/licenses/MIT">MIT OS License!</a></p>
@@ -42,6 +41,7 @@
 		<p> <b>Starting resources</b> <input type="text" value="150000" onchange="updateStartResources(this.value)"> </p>
 		<p><b>Resource replenishment rate:</b> <input type="text" value="102" onchange="updateResourceReplenishment(this.value)">%</p>
 		<p><b>Max resource level:</b> <input type="text" value="200000" onchange="updateMaxResource(this.value)"></p>
+		<p><b>Initial bug's stuffome:</b> <input type="text" value="NNNNNNMOCOSNNNNN" onchange="updateStartStuffome(this.value)"> </p>
 		<p><b>Mutation odds:</b> one in <input type="text" value="50" onchange="updateMutationOdds(this.value)"> letters</p>
 		<p><b>Start energy:</b> <input type="text" value="5" onchange="updateStartEnergy(this.value)">  </p>
 		<p><b>Reproduction energy:</b> <input type="text" value="15" onchange="updateRepEnergy(this.value)"></p>
