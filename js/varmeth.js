@@ -23,19 +23,19 @@ var alfabeto = [
 	"P", "Q", "R", "S", "T" 
 	]; // stores all possible letters to be used in stuffome. In this case, 20 letters
 	// (STUFFOME: simplified version of genome, proteome, metabolome, etc). 
-var surviveSeq = ["MOCOS"]; // Array with stuffome sequences that allow metabolism, i.e. eat
+var surviveSeq = ["MO", "CO", "SO"]; // Array with stuffome sequences that allow metabolism, i.e. eat
 var killSeq = [];  // Array with antibiotic sequences that block metabolism, i.e. kill
 var stuffomeLength = 16; // length of stuffome in each bug
 var mutationOdds = 50; // 1/n chance of mutation per letter
 
 // Energy
-var reproductionEnergy = 10; // energy needed for a bug to reproduce 
+var reproductionEnergy = 15; // energy needed for a bug to reproduce 
 	//(BUG: individual agent/organism/player/whatev)
 var startEnergy = 5; // energy at which bug starts
-var poolStart = 1000; // stores starting level of Energy Pool
+var poolStart = 150000; // stores starting level of Energy Pool
 var poolMax = 200000; // stores "maximum sustainable yield" of the energy pool. Ceiling value.
 var energyPool = poolStart; // stores resources on medium. Set to starting value
-var energyPoolReplenish = 1.1; // stores factor by which energyPool replenishes. 1 = no replenishment
+var energyPoolReplenish = 1.02; // stores factor by which energyPool replenishes. 1 = no replenishment
 
 // Keeping track of things
 var bugArray = []; // stores all bugs

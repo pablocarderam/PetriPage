@@ -17,13 +17,14 @@
 		<p><b>Simple evolution simulator</b></p>
 		<p class="text">
 			The simulator displays inidividuals (‘bugs’) as little circles. 
-			Each bug has a 16 letter genome/proteome/metabolome (‘stuffome’). 
+			Each bug has a 16 letter genome/ proteome/ metabolome (‘stuffome’). 
 			Stuffomes have a vocab of 20 letters, 10 synonymous pairs. 
 			If a bug has a specific survival sequence in its stuffome, it can eat and survive. 
 			Eating gives the bug Energy, and subtracts Energy from the common resource pool. 
 			If a bug has enough energy, it reproduces. The daughter bug has a certain chance to mutate. 
 			If there is not enough food available, a bug dies. 
 			You can view the population and resource level graphs.
+			Note: the initial bug's stuffome is "NNNNNNMOCOSNNNNN"
 		</p>
 		<p>Future plans include antibiotic resistance simulations</p>
 		<p><a href="http://opensource.org/licenses/MIT">MIT OS License!</a></p>
@@ -38,13 +39,13 @@
 	
 	<div class="parameters">
 		<p><b>Framerate:</b> 1<input type="range" name="frameRateSlider" min="1" max="10" value="5" onchange="updateFps(this.value)">10 fps</p>
-		<p> <b>Starting resources</b> <input type="text" value="1000" onchange="updateStartResources(this.value)"> </p>
-		<p><b>Resource replenishment rate:</b> <input type="text" value="110" onchange="updateResourceReplenishment(this.value)">%</p>
+		<p> <b>Starting resources</b> <input type="text" value="150000" onchange="updateStartResources(this.value)"> </p>
+		<p><b>Resource replenishment rate:</b> <input type="text" value="102" onchange="updateResourceReplenishment(this.value)">%</p>
 		<p><b>Max resource level:</b> <input type="text" value="200000" onchange="updateMaxResource(this.value)"></p>
 		<p><b>Mutation odds:</b> one in <input type="text" value="50" onchange="updateMutationOdds(this.value)"> letters</p>
 		<p><b>Start energy:</b> <input type="text" value="5" onchange="updateStartEnergy(this.value)">  </p>
-		<p><b>Reproduction energy:</b> <input type="text" value="10" onchange="updateRepEnergy(this.value)"></p>
-		<p><b>Survival sequence</b> <input type="text" value="MOCOS" onchange="updateSurviveSeq(0, this.value)"></p>
+		<p><b>Reproduction energy:</b> <input type="text" value="15" onchange="updateRepEnergy(this.value)"></p>
+		<p><b>Survival sequences</b> <input type="text" value="MO" onchange="updateSurviveSeq(0, this.value)"><input type="text" value="CO" onchange="updateSurviveSeq(1, this.value)"><input type="text" value="SO" onchange="updateSurviveSeq(2, this.value)"></p>
 		<p id="new_survive_seqs"><input type="button" value="New survival sequence" onclick="newSurviveSeq()"></p>
 		<p><b>Kill sequence</b> <input type="text" value="TYPE HERE" onchange="updateKillSeq(0, this.value)"></p>
 		<p id="new_kill_seqs"><input type="button" value="New kill sequence" onclick="newKillSeq()"></p>

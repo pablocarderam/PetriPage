@@ -81,7 +81,7 @@ function Bug(stuffome, X, Y, color) { // class conctructor
 		}
 		for (var l=0; l<killSeq.length; l++) { // for every survival sequence
 			if (synStuffome.search(killSeq[l]) >= 0) { // if the synonym has the survival sequence
-				this.energy = this.energy - 1; // consume energy
+				this.energy = 0; // consume energy
 			}
 		}
 		
