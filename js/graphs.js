@@ -1,6 +1,6 @@
 // JavaScript Document, graph functions
 
-function graph() { // draw population and resource graphs
+function graphPopul() { // draw population and resource graphs
 	ctx.fillStyle = "#FFFFFF"; // erase stage
 	ctx.fillRect(0, 0, centerX*2, centerY*2);
 	
@@ -30,4 +30,22 @@ function graph() { // draw population and resource graphs
 	ctx.fillText("Max resources: " + maxResources, 10, 10);
 	ctx.fillStyle = '#FF0000';
 	ctx.fillText("Max population: " + maxBugs, 10, 25);
+}
+
+function drawPetri() {
+	ctx.fillStyle = "#FFFFFF"; // erase stage
+	ctx.fillRect(0, 0, centerX*2, centerY*2);
+	
+	// Draw petri dish
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, centerX - 5, 0, 2*Math.PI, false);
+	ctx.fillStyle = '#00FFDD';
+	ctx.fill();
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = '#99DDDD';
+	ctx.stroke();
+	
+	for (var i=0; i<bugArray.length; i++) {
+		bugArray[i].draw();
+	}
 }

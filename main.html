@@ -11,8 +11,15 @@
 			<canvas id="stage" width="1000" height="1000"><img src="error.png" alt="Error"></canvas>
 		</div>
 		
-		<input id="graphBtn" type="button" onclick="graphBtnHandler()" value='Show graph'></input>
-		<input id="restart" type="button" onclick="restart()" value='Restart'></input>
+		<p>
+			<input id="petriBtn" type="button" onclick="petriBtnHandler()" value='Petri plate'></input>
+			<input id="graphBtn" type="button" onclick="graphBtnHandler()" value='Population'></input>
+			<input id="strainBtn" type="button" onclick="strainBtnHandler()" value='Strains'></input>
+		</p>
+		<p>
+			<input id="run-pause" type="button" onclick="runPause()" value='Run'></input>
+			<input id="restart" type="button" onclick="restart()" value='Restart'></input>
+		</p>
 		
 		<p><b>Simple evolution simulator</b></p>
 		<p class="text">

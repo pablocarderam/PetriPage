@@ -1,7 +1,6 @@
 // JavaScript Document, Bug Class
 
 function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
-	bugArray.push(this); // add to bugArray
 	
 	// Properties
 	this.stuffome = stuffome;
@@ -10,6 +9,9 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 	this.Y = Y;
 	this.color = color;
 	this.parentStuffome = parentStuffome;
+	
+	stuffomeArray.push(this.stuffome); // add to stuffomeArray
+	bugArray.push(this); // add to bugArray
 	
 	// Methods
 	this.eat = function () { // Eat
@@ -63,8 +65,17 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 		var daughter = new Bug(newStuffome, newX, newY, newColor, this.stuffome); // make new bug
 		this.energy = startEnergy; // set this one's energy to startEnergy
 	};
+	this.draw = function() {
+		ctx.beginPath(); // draw bug
+		ctx.arc(this.X, this.Y, bugRadius, 0, 2*Math.PI, false);
+		ctx.fillStyle = this.color;
+		ctx.fill();
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = '#00BB33';
+		ctx.stroke();
+	};
 	this.onEnterFrame = function () { // every new frame
-	
+		
 		this.energy = this.energy - 1; // consume energy
 		
 		var synStuffome = this.stuffome; // stores synonym stuffome to compare against surviveSeq
@@ -95,15 +106,6 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 		}
 		if (this.energy <= 0) { // if no energy
 			this.die(); // die
-		}
-		else { // if not dead
-			ctx.beginPath(); // draw bug
-			ctx.arc(this.X, this.Y, bugRadius, 0, 2*Math.PI, false);
-			ctx.fillStyle = this.color;
-			ctx.fill();
-			ctx.lineWidth = 2;
-			ctx.strokeStyle = '#00BB33';
-			ctx.stroke();
 		}
 	};
 }

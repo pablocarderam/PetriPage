@@ -2,21 +2,17 @@
 
 function mainLoop() {
 	if (!killSwitch) { // if killswitch off
-		
-		ctx.fillStyle = "#FFFFFF"; // erase stage
-		ctx.fillRect(0, 0, centerX*2, centerY*2);
-		
-		// Draw petri dish
-		//console.log("Bugs: " + bugArray.length + ". Energy Pool: " + energyPool);
-		ctx.beginPath();
-		ctx.arc(centerX, centerY, centerX - 5, 0, 2*Math.PI, false);
-		ctx.fillStyle = '#00FFDD';
-		ctx.fill();
-		ctx.lineWidth = 5;
-		ctx.strokeStyle = '#99DDDD';
-		ctx.stroke();
-		
+		if (viewMode === "petri") {
+			drawPetri();
+		}
+		else if (viewMode === "popul") {
+			graphPopul();
+		}
+		else if (viewMode === "strain") {
+			
+		}
 		// loop through all bugs for life functions, drawing
+		
 		for (var i=0; i<bugArray.length; i++) {
 			if (killSwitch) {
 				break;
@@ -46,22 +42,35 @@ function mainLoop() {
 	}
 }
 
-function graphBtnHandler() { // when killswitch clicked
-	killSwitch = !killSwitch; // flip killSwitch
+function graphBtnHandler() {
+	viewMode = "popul";
+	graphPopul();
+}
+
+function petriBtnHandler() {
+	viewMode = "petri";
+	drawPetri();
+}
+
+function strainBtnHandler() {
+	viewMode = "strain";
+}
+
+function runPause() {
 	if (killSwitch) {
-		document.getElementById('graphBtn').value = "Hide graph";
-		graph();
+		killSwitch = false;
+		document.getElementById("run-pause").value = "Pause";
+		mainLoop();
 	}
 	else {
-		document.getElementById('graphBtn').value = "Show graph";
-		ctx.fillStyle = "#FFFFFF"; // erase stage
-		ctx.fillRect(0, 0, centerX*2, centerY*2);
-		mainLoop();
+		killSwitch = true;
+		document.getElementById("run-pause").value = "Run";
 	}
 }
 
 function restart() {
 	killSwitch = true;
+	document.getElementById("run-pause").value = "Run";
 	energyPool = poolStart;
 	bugArray = [];
 	graphInfo = [[1, energyPool]];
@@ -71,23 +80,25 @@ function restart() {
 	ctx.fillStyle = "#FFFFFF"; // erase stage
 	ctx.fillRect(0, 0, centerX*2, centerY*2);
 	
-	// Draw petri dish
-	ctx.beginPath();
-	ctx.arc(centerX, centerY, centerX - 5, 0, 2*Math.PI, false);
-	ctx.fillStyle = '#00FFDD';
-	ctx.fill();
-	ctx.lineWidth = 5;
-	ctx.strokeStyle = '#99DDDD';
-	ctx.stroke();
-	
 	var luca = new Bug(startStuffome, centerX, centerY, '#00CC77', '-'); // First Bug
+	
+	// Draw petri dish
+	if (viewMode === "petri") {
+		drawPetri();
+	}
+	else if (viewMode === "popul") {
+		graphPopul();
+	}
+	else if (viewMode === "strain") {
+		
+	}
 	
 	gLoop = setTimeout(init, 1000/10); // pause before starting (fixes restart bug)
 }
 
 function init() {
-	killSwitch = false;
-	document.getElementById('graphBtn').value = "Show graph";
+	killSwitch = true;
+	document.getElementById("run-pause").value = "Run";
 	mainLoop();
 }
 

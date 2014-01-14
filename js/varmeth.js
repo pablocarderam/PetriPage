@@ -13,7 +13,8 @@ centerY = 250;
 var bugRadius = 8; // radius of circle onscreen
 var gLoop; // for looping the main loop
 var fps = 5; // framerate in frames per sec
-var killSwitch = false;
+var killSwitch = true;
+var viewMode = "petri";
 
 // Reproduction and related
 var alfabeto = [
@@ -40,6 +41,7 @@ var energyPoolReplenish = 1.02; // stores factor by which energyPool replenishes
 
 // Keeping track of things
 var bugArray = []; // stores all bugs
+var stuffomeArray = []; // stores all stuffomes of all bugs ever
 
 var graphInfo = [[1, energyPool]]; // stores population and resource levels for each frame, to be graphed later. Each element in array is [population, resources]
 var maxBugs = 1; // stores max values attained in the simulation, used for graph scale
