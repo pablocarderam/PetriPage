@@ -41,7 +41,7 @@ var energyPoolReplenish = 1.02; // stores factor by which energyPool replenishes
 
 // Keeping track of things
 var bugArray = []; // stores all bugs
-var stuffomeArray = []; // stores all stuffomes of all bugs ever
+var historyArray = []; // stores reference to all bugs ever
 
 var graphInfo = [[1, energyPool]]; // stores population and resource levels for each frame, to be graphed later. Each element in array is [population, resources]
 var maxBugs = 1; // stores max values attained in the simulation, used for graph scale
@@ -52,6 +52,19 @@ var maxResources = energyPool;
 function getDistance(x1, y1, x2, y2) { // find distance between two points
 	var dist = Math.round(Math.sqrt(Math.pow((x1 - x2)/5.5, 2) + Math.pow(y1 - y2, 2))); //altered x coordinates to make buttons wide
 	return dist;
+}
+
+function sortBy(a,b) { 
+	return parseFloat(b[1]) - parseFloat(a[1]);
+}
+
+function randomColor() {
+	var newColor = "#";
+	var letters = '0123456789ABCDEF'.split('');
+	for (var j=0; j<6; j++) {
+		newColor += letters[Math.round(Math.random()*15)];
+	}
+	return newColor;
 }
 
 // Updaters

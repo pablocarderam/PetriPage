@@ -10,7 +10,6 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 	this.color = color;
 	this.parentStuffome = parentStuffome;
 	
-	stuffomeArray.push(this.stuffome); // add to stuffomeArray
 	bugArray.push(this); // add to bugArray
 	
 	// Methods
@@ -24,10 +23,10 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 		//energyPool = energyPool + 5; // TO DO: does dying add more resources?
 		var position = bugArray.indexOf(this);
 		bugArray.splice(position, 1); // remove from bugArray
-		this.stuffome = null; // remove properties
+		/*this.stuffome = null; // remove properties
 		this.energy = null;
 		this.X = null;
-		this.Y = null;
+		this.Y = null;*/
 	};
 	this.reproduce = function () { // reproduce
 		var preStuffome = this.stuffome.split(""); // array storing all letters
@@ -54,12 +53,7 @@ function Bug(stuffome, X, Y, color, parentStuffome) { // class conctructor
 		}
 		
 		if (mutated) { // if new bug is mutant
-			//console.log(newStuffome);
-			newColor = "#"; // give it a new color
-			var letters = '0123456789ABCDEF'.split('');
-			for (var j=0; j<6; j++) {
-				newColor += letters[Math.round(Math.random()*15)];
-			}
+			newColor = randomColor(); // give it a new color
 		}
 		
 		var daughter = new Bug(newStuffome, newX, newY, newColor, this.stuffome); // make new bug
